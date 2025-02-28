@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Maintenance History</title>
+    <style>
+        /* Background Image for Full Page */
+        body {
+            background-image: url("{{ url_for('static', filename='images/view_service.jpeg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            padding-top: 5%;
+        }
+
+        /* History Container */
+        .history-container {
+            background-color: rgba(0, 0, 0, 0.7); /* Dark transparent background */
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px;
+            font-size: 1.2em;
+        }
+
+        a {
+            color: yellow;
+            font-size: 1.2em;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.3);
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        a:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="history-container">
+        <h2>Maintenance History</h2>
+        <ul>
+            {% for record in records %}
+            <li>{{ record.date }} - {{ record.service_type }} - ${{ record.cost }} - {{ record.notes }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    </div>
+</body>
+</html>
